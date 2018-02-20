@@ -1,5 +1,6 @@
 package com.mibrh.thoughtfulshow;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,18 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
 
     private List<Video> videoList;
+    private Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, duration;
-        public ImageView thumbnail;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView title, duration;
+        private ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.row_video_title);
             duration = (TextView) view.findViewById(R.id.row_video_duration);
@@ -27,8 +31,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
     }
 
     // remove username for original
-    public VideoAdapter(List<Video> videoList) {
+    public VideoAdapter(List<Video> videoList, Context context) {
         this.videoList = videoList;
+        this.context = context;
     }
 
     @Override
@@ -44,9 +49,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        //Message message = messageList.get(position);
-        //holder.username.setText(message.getUsername());
-        //holder.text.setText(message.getText());
+        Video video = videoList.get(position);
+        Picasso.with(context).load(video.getThumbnailURL()).into(holder.thumbnail);
     }
 
     @Override

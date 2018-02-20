@@ -20,9 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerViewVideos = (RecyclerView) findViewById(R.id.recycler_view_messages_display);
-
         // Initialize vars
-        vAdapter = new VideoAdapter(videoList);
+        vAdapter = new VideoAdapter(videoList, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewVideos.setLayoutManager(mLayoutManager);
         recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
