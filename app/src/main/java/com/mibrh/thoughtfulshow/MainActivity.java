@@ -6,12 +6,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewVideos;
-    List<Video> videoList;
+    ArrayList<Video> videoList = VideoList.getAll();
     VideoAdapter vAdapter;
 
     @Override
@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewVideos.setLayoutManager(mLayoutManager);
         recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
         recyclerViewVideos.setAdapter(vAdapter);
-
     }
 
 

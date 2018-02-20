@@ -32,7 +32,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout;
 
         layout = R.layout.row_video_list_item;
