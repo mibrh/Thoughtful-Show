@@ -51,6 +51,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Video video = videoList.get(position);
         Picasso.with(context).load(video.getThumbnailURL()).into(holder.thumbnail);
+        holder.title.setText(video.getTitle());
     }
 
     @Override
