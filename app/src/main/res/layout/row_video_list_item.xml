@@ -2,7 +2,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
@@ -26,11 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingStart="@dimen/text_padding_left"
+            android:paddingTop="@dimen/text_title_padding_top"
             android:text="@string/default_title"
             app:layout_constraintLeft_toRightOf="@id/thumbnail"
             app:layout_constraintTop_toTopOf="@id/thumbnail"
-            android:paddingStart="@dimen/text_padding_left"
-            android:paddingTop="@dimen/text_padding_top"/>
+            style="@style/TextBold"
+            android:textColor="@color/colorBlack"
+            />
 
         <TextView
             android:id="@+id/main_video_duration"
@@ -41,7 +43,11 @@
             app:layout_constraintLeft_toRightOf="@id/thumbnail"
             app:layout_constraintTop_toBottomOf="@id/main_video_title"
             android:paddingStart="@dimen/text_padding_left"
-            android:paddingTop="@dimen/text_padding_top"/>
+            android:paddingTop="@dimen/text_duration_padding_top"
+            style="@style/TextRegular"
+            android:textColor="@color/colorRed"
+            android:textAlignment="textEnd"
+            />
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>
