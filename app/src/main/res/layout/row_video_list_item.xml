@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="86dp"
+            android:layout_height="82dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:paddingStart="@dimen/image_padding_left"
+            android:paddingTop="@dimen/image_padding_top"
+            android:paddingBottom="@dimen/image_padding_bottom"/>
+
+        <TextView
+            android:id="@+id/main_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/default_title"
+            app:layout_constraintLeft_toRightOf="@id/thumbnail"
+            app:layout_constraintTop_toTopOf="@id/thumbnail"
+            android:paddingStart="@dimen/text_padding_left"
+            android:paddingTop="@dimen/text_padding_top"/>
+
+        <TextView
+            android:id="@+id/main_video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/default_duration"
+            app:layout_constraintLeft_toRightOf="@id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/main_video_title"
+            android:paddingStart="@dimen/text_padding_left"
+            android:paddingTop="@dimen/text_padding_top"/>
+
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>
