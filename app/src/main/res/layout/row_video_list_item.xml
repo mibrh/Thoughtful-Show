@@ -12,7 +12,7 @@
         >
 
         <ImageView
-            android:id="@+id/thumbnail"
+            android:id="@+id/row_video_thumbnail"
             android:layout_width="86dp"
             android:layout_height="82dp"
             app:srcCompat="@mipmap/ic_launcher"
@@ -21,27 +21,27 @@
             android:paddingBottom="@dimen/image_padding_bottom"/>
 
         <TextView
-            android:id="@+id/main_video_title"
+            android:id="@+id/row_video_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingStart="@dimen/text_padding_left"
             android:paddingTop="@dimen/text_title_padding_top"
             android:text="@string/default_title"
-            app:layout_constraintLeft_toRightOf="@id/thumbnail"
-            app:layout_constraintTop_toTopOf="@id/thumbnail"
+            app:layout_constraintLeft_toRightOf="@id/row_video_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/row_video_thumbnail"
             style="@style/TextBold"
             android:textColor="@color/colorBlack"
             />
 
         <TextView
-            android:id="@+id/main_video_duration"
+            android:id="@+id/row_video_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/default_duration"
-            app:layout_constraintLeft_toRightOf="@id/thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/main_video_title"
+            app:layout_constraintLeft_toRightOf="@id/row_video_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/row_video_title"
             android:paddingStart="@dimen/text_padding_left"
             android:paddingTop="@dimen/text_duration_padding_top"
             style="@style/TextRegular"
