@@ -28,7 +28,6 @@ public class Video {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Log.d(TAG, "Success");
-                String title = "blah";
                 try {
                     title = response.getString("title");
                     Log.d(TAG, "trying to get title");
@@ -42,6 +41,7 @@ public class Video {
 
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error)  {
                 Log.d(TAG, "onFailure called: " + statusCode);
+                throwable.printStackTrace();
             }
         });
     }
