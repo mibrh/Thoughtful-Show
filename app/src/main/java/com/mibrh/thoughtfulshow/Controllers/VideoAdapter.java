@@ -1,4 +1,4 @@
-package com.mibrh.thoughtfulshow;
+package com.mibrh.thoughtfulshow.Controllers;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mibrh.thoughtfulshow.R;
+import com.mibrh.thoughtfulshow.Models.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
