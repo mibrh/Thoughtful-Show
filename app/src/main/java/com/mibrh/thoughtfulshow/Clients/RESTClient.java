@@ -13,6 +13,5 @@ public class RESTClient {
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.get(url, params, responseHandler);
-        Log.d(TAG, "got some response");
     }
 }

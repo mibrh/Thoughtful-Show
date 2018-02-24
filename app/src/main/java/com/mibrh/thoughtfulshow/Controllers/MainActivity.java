@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Video> videoList = new ArrayList<>();
     VideoAdapter vAdapter;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +48,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Set adapter for recyclerViewVideos");
 //        videoList.get(1).fetchData();
 
-        YoutubeClient.getList();
-        Log.d(TAG, "YoutuveClient.getList called");
-
-        videoList = YoutubeClient.getVideoArrayList();
-        Log.d(TAG, "YoutubeCLient.getVideoArrayList called");
+        YoutubeClient.getList(new YoutubeClient.OnVideosReceived(){
+            @Override
+            public void videoListCreated(ArrayList<Video> videos) {
+                videoList.addAll(videos);
+                vAdapter.notifyDataSetChanged();
+                Log.d(TAG, "VideoAdapter notified on change to videoList");
+            }
+        });
+        Log.d(TAG, "YoutubeClient.getList called and video list set");
     }
 }
