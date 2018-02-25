@@ -9,6 +9,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_left"
+        android:layout_marginEnd="@dimen/layout_padding_right"
         >
 
         <ImageView
@@ -25,8 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingStart="@dimen/text_padding_left"
-            android:paddingTop="@dimen/text_title_padding_top"
+            android:layout_marginTop="@dimen/text_title_padding_top"
+            android:layout_marginStart="@dimen/text_padding_left"
+            android:layout_marginEnd="@dimen/text_padding_right"
             android:text="@string/default_title"
             app:layout_constraintLeft_toRightOf="@id/row_video_thumbnail"
             app:layout_constraintTop_toTopOf="@id/row_video_thumbnail"
