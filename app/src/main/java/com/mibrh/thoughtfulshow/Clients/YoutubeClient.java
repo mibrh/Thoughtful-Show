@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-import static android.content.ContentValues.TAG;
-
 
 public class YoutubeClient {
+    private static final String TAG = "YoutubeClient";
+
     private static final String CHANNEL_ID = "UCQ97Z8xFj6BAUFcjP71zNNg";
     private static final String INFO_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet,id&order=date&maxResults=20&type=video";
     private static final String STREAM_URL = "http://kholo.pk/api/nuclearn/video/";
@@ -42,36 +42,39 @@ public class YoutubeClient {
                 }
             }
 
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error)  {
-                Log.d(TAG, "onFailure called: " + statusCode);
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error) {
+                Log.d(TAG, "onFailure called in getList");
                 App.showToast("Failure getting videos from youtube");
                 throwable.printStackTrace();
             }
         });
     }
 
-    public static void getVideoURL(String videoID, final OnURLReceived callback) {
+    public static void getVideoURL(String videoID, final OnStreamURLReceived callback) {
+        Log.d(TAG, "getVideoURL started");
         RESTClient.get(streamURL(videoID), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                String videoURL;
+                String videoStreamURL;
                 try {
-                    videoURL = response.getJSONObject("streams").getString("source");
-                    callback.videoURLReceived(videoURL);
+                    videoStreamURL = response.getJSONObject("streams").getString("source");
+                    Log.d(TAG, "onSuccess getVideoURL, Stream URL is: " + videoStreamURL);
+                    callback.videoStreamURLReceived(videoStreamURL);
                 } catch(JSONException e) {
+                    Log.d(TAG, "getVideoURL onSuccess JSONException");
                     e.printStackTrace();
                 }
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error) {
+                Log.d(TAG, "onFailure called in getVideoURL");
+                throwable.printStackTrace();
             }
         });
     }
 
     private static String streamURL(String videoID) {
-        return STREAM_URL + videoID;
-    }
-
-    private static String getStreamURL(String videoID) {
-        // TODO:
-        // this gets link to JSONObject containing stream url
+        Log.d(TAG, "streamURL called: " + STREAM_URL + videoID);
         return STREAM_URL + videoID;
     }
 
@@ -83,7 +86,7 @@ public class YoutubeClient {
         void videoListCreated(ArrayList<Video> videos);
     }
 
-    public interface OnURLReceived {
-        void videoURLReceived(String videoURL);
+    public interface OnStreamURLReceived {
+        void videoStreamURLReceived(String videoStreamURL);
     }
 }

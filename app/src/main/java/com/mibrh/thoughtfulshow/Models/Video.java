@@ -23,6 +23,8 @@ public class Video implements Serializable {
 
     public String getTitle() { return title; }
 
+    public String getId() { return id; }
+
     public String getDescription() { return description; }
 
     public String getThumbnailURL() {

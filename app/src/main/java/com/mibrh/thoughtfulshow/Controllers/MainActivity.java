@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "MainActivity onCreate");
         super.onCreate(savedInstanceState);
 
         // Remove title bar
@@ -68,11 +69,9 @@ public class MainActivity extends AppCompatActivity {
 //        videoList.get(1).fetchData();
 
         // callback - get video list
-        YoutubeClient.getList(new YoutubeClient.OnVideosReceived(){
+        YoutubeClient.getList(new YoutubeClient.OnVideosReceived() {
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
-                // TODO:
-                // Remove try catch block, add loading circle while adapter updates
                 videoList.addAll(videos);
                 progressBar.setVisibility(View.GONE);
                 recyclerViewVideos.setVisibility(View.VISIBLE);
@@ -87,9 +86,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Video video = videoList.get(position);
-                Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick called for: " + video.getTitle() + ", id: " + video.getId() + ", starting intent");
                 // Intent to start VideoActivity
-                Intent intent = new Intent(getApplicationContext(), VideoActivity.class);
+                Intent intent = new Intent(App.getContext(), VideoActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, video);
                 startActivity(intent);
             }
