@@ -1,5 +1,6 @@
 package com.mibrh.thoughtfulshow.Controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,7 +20,9 @@ import com.mibrh.thoughtfulshow.R;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "VideoObject";
     private final String TAG = "MainActivity";
     RecyclerView recyclerViewVideos;
     ProgressBar progressBar;
@@ -64,16 +67,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Set adapter for recyclerViewVideos");
 //        videoList.get(1).fetchData();
 
+        // callback - get video list
         YoutubeClient.getList(new YoutubeClient.OnVideosReceived(){
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
                 // TODO:
                 // Remove try catch block, add loading circle while adapter updates
-                try {
-                    Thread.sleep(5000);
-                } catch(InterruptedException e) {
-                    e.printStackTrace();
-                }
                 videoList.addAll(videos);
                 progressBar.setVisibility(View.GONE);
                 recyclerViewVideos.setVisibility(View.VISIBLE);
@@ -83,12 +82,16 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d(TAG, "YoutubeClient.getList called and video list set");
 
-        // RecyclerView OnItemClickListener
+        // RecyclerView OnItemClickListener callback
         recyclerViewVideos.addOnItemTouchListener(new RecyclerTouchListener(App.getContext(), recyclerViewVideos, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Video video = videoList.get(position);
                 Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
+                // Intent to start VideoActivity
+                Intent intent = new Intent(getApplicationContext(), VideoActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, video);
+                startActivity(intent);
             }
 
             @Override
