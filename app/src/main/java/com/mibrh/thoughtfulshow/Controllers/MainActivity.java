@@ -6,6 +6,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     RecyclerView recyclerViewVideos;
+    ProgressBar progressBar;
     ArrayList<Video> videoList = new ArrayList<>();
     VideoAdapter vAdapter;
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         App.setContext(getApplicationContext());
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_main);
 
         recyclerViewVideos = (RecyclerView) findViewById(R.id.recycler_view_messages_display);
         Log.d(TAG, "Set up recyclerViewVideos");
@@ -51,7 +56,16 @@ public class MainActivity extends AppCompatActivity {
         YoutubeClient.getList(new YoutubeClient.OnVideosReceived(){
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
+                // TODO:
+                // Remove try catch block, add loading circle while adapter updates
+                try {
+                    Thread.sleep(5000);
+                } catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
                 videoList.addAll(videos);
+                progressBar.setVisibility(View.GONE);
+                recyclerViewVideos.setVisibility(View.VISIBLE);
                 vAdapter.notifyDataSetChanged();
                 Log.d(TAG, "VideoAdapter notified on change to videoList");
             }
