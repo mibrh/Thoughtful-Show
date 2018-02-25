@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -25,6 +26,8 @@ public class VideoActivity extends AppCompatActivity{
     private static ProgressDialog progressDialog;
 
     VideoView videoView;
+    TextView videoTitle;
+    TextView videoDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,14 @@ public class VideoActivity extends AppCompatActivity{
         Video video = (Video) getIntent().getSerializableExtra(MainActivity.EXTRA_MESSAGE);
         Log.d(TAG, "Got video from Intent.getSerializableExtra, id is: " + video.getId());
 
-        // Initialize view
+        // Initialize views
         videoView = (VideoView) findViewById(R.id.video_view);
+        videoTitle = (TextView) findViewById(R.id.video_stream_title);
+        videoDescription = (TextView) findViewById(R.id.video_stream_description);
+
+        // Set text in description block
+        videoTitle.setText(video.getTitle());
+        videoDescription.setText(video.getDescription());
 
         // Progress Dialog
         progressDialog = ProgressDialog.show(VideoActivity.this, "", "Buffering video", true);

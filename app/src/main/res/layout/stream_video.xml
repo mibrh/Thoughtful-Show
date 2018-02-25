@@ -7,10 +7,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp"
+        android:layout_width="390dp"
+        android:layout_height="300dp"
+        android:id="@+id/linear_layout_video"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -20,4 +19,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout_video"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="@dimen/layout_padding_left"
+        android:layout_marginEnd="@dimen/layout_padding_right">
+
+        <TextView
+            android:id="@+id/video_stream_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_title"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginStart="@dimen/text_padding_left"
+            android:layout_marginTop="@dimen/text_title_padding_top"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/video_stream_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_description"
+            android:textSize="15sp"
+            android:layout_marginStart="@dimen/text_padding_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/video_stream_title"
+            />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
