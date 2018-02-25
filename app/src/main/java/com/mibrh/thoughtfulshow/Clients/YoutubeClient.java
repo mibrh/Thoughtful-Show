@@ -50,6 +50,25 @@ public class YoutubeClient {
         });
     }
 
+    public static void getVideoURL(String videoID, final OnURLReceived callback) {
+        RESTClient.get(streamURL(videoID), null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                String videoURL;
+                try {
+                    videoURL = response.getJSONObject("streams").getString("source");
+                    callback.videoURLReceived(videoURL);
+                } catch(JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private static String streamURL(String videoID) {
+        return STREAM_URL + videoID;
+    }
+
     private static String getStreamURL(String videoID) {
         // TODO:
         // this gets link to JSONObject containing stream url
@@ -62,5 +81,9 @@ public class YoutubeClient {
 
     public interface OnVideosReceived {
         void videoListCreated(ArrayList<Video> videos);
+    }
+
+    public interface OnURLReceived {
+        void videoURLReceived(String videoURL);
     }
 }
