@@ -21,6 +21,8 @@ public class Video {
 
     public String getTitle() { return title; }
 
+    public String getDescription() { return description; }
+
     public String getThumbnailURL() {
         return "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
     }

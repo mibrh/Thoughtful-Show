@@ -21,6 +21,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
     private Context context;
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        // TODO:
+        // Get duration value from JSON object
         private TextView title, duration;
         private ImageView thumbnail;
 
