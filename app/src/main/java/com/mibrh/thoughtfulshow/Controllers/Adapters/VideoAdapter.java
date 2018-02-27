@@ -1,4 +1,4 @@
-package com.mibrh.thoughtfulshow.Controllers;
+package com.mibrh.thoughtfulshow.Controllers.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.mibrh.thoughtfulshow.Controllers;
+package com.mibrh.thoughtfulshow.Controllers.Activities;
 
 
 import android.app.ProgressDialog;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
+import com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment;
 import com.mibrh.thoughtfulshow.Models.Video;
 import com.mibrh.thoughtfulshow.R;
 
@@ -42,7 +43,7 @@ public class VideoActivity extends AppCompatActivity{
         setContentView(R.layout.stream_video);
 
         // Get the username from the intent that started this activity
-        Video video = (Video) getIntent().getSerializableExtra(MainActivity.EXTRA_MESSAGE);
+        Video video = (Video) getIntent().getSerializableExtra(VideoListFragment.EXTRA_MESSAGE);
         Log.d(TAG, "Got video from Intent.getSerializableExtra, id is: " + video.getId());
 
         // Initialize views
