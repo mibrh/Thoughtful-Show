@@ -1,80 +1,64 @@
-package com.mibrh.thoughtfulshow.Controllers;
+package com.mibrh.thoughtfulshow.Controllers.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ProgressBar;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
+import com.mibrh.thoughtfulshow.Controllers.Activities.VideoActivity;
+import com.mibrh.thoughtfulshow.Controllers.Adapters.RecyclerTouchListener;
+import com.mibrh.thoughtfulshow.Controllers.Adapters.VideoAdapter;
 import com.mibrh.thoughtfulshow.Models.Video;
 import com.mibrh.thoughtfulshow.R;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class VideoListFragment extends Fragment {
     public static final String EXTRA_MESSAGE = "VideoObject";
-    private final String TAG = "MainActivity";
+    private final String TAG = "VideoListFragment";
     RecyclerView recyclerViewVideos;
-    ProgressBar progressBar;
-    ArrayList<Video> videoList = new ArrayList<>();
-    VideoAdapter vAdapter;
+//    ProgressBar progressBar;
+    private ArrayList<Video> videoList = new ArrayList<>();
+    private VideoAdapter vAdapter;
 
+    public VideoListFragment() {}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "MainActivity onCreate");
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_vid_list, container, false);
+        Context context = App.getContext();
 
-        // Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Initialize Views
+//        progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
+        recyclerViewVideos = (RecyclerView) root.findViewById(R.id.recycler_view_messages_display);
 
-        // Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // setContentView now to avoid crash
-        setContentView(R.layout.activity_main);
-
-        App.setContext(getApplicationContext());
-
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar_main);
-
-        recyclerViewVideos = (RecyclerView) findViewById(R.id.recycler_view_messages_display);
-        Log.d(TAG, "Set up recyclerViewVideos");
+        // Set up recycler view
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+        recyclerViewVideos.setLayoutManager(mLayoutManager);
+        recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewVideos.setAdapter(vAdapter);
 
         // Initialize vars
-        vAdapter = new VideoAdapter(videoList, this);
+        vAdapter = new VideoAdapter(videoList, context);
         Log.d(TAG, "vAdapter setup");
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        Log.d(TAG, "New LayoutManager for RecyclerView");
-
-        recyclerViewVideos.setLayoutManager(mLayoutManager);
-        Log.d(TAG, "Set LayoutManager to recyclerViewVideos");
-
-        recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
-        Log.d(TAG, "Set default animator for recyclerViewVideos");
-
-        recyclerViewVideos.setAdapter(vAdapter);
-        Log.d(TAG, "Set adapter for recyclerViewVideos");
-//        videoList.get(1).fetchData();
 
         // callback - get video list
         YoutubeClient.getList(new YoutubeClient.OnVideosReceived() {
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
                 videoList.addAll(videos);
-                progressBar.setVisibility(View.GONE);
-                recyclerViewVideos.setVisibility(View.VISIBLE);
                 vAdapter.notifyDataSetChanged();
                 Log.d(TAG, "VideoAdapter notified on change to videoList");
             }
@@ -97,10 +81,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLongClick(View view, int position) {
                 Video video = videoList.get(position);
-                Toast.makeText(getApplicationContext(), video.getTitle() + " long clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(App.getContext(), video.getTitle() + " long clicked", Toast.LENGTH_SHORT).show();
             }
         }));
+        return root;
     }
-
-
 }
