@@ -21,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "MainActivity onCreate");
         super.onCreate(savedInstanceState);
-        // Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // setContentView now to avoid crash
         setContentView(R.layout.activity_main);
         App.setContext(getApplicationContext());
 
