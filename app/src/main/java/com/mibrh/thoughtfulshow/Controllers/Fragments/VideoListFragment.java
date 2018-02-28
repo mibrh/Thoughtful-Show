@@ -38,32 +38,24 @@ public class VideoListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_vid_list, container, false);
-        Context context = App.getContext();
+        Context context = getContext();
 
         // Initialize Views
 //        progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
         recyclerViewVideos = (RecyclerView) root.findViewById(R.id.recycler_view_messages_display);
+
+        // Initialize adapter
+        vAdapter = new VideoAdapter(videoList, context);
+        Log.d(TAG, "vAdapter setup");
 
         // Set up recycler view
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerViewVideos.setLayoutManager(mLayoutManager);
         recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
         recyclerViewVideos.setAdapter(vAdapter);
+        Log.d(TAG, "Adapter attached to recycler");
 
-        // Initialize vars
-        vAdapter = new VideoAdapter(videoList, context);
-        Log.d(TAG, "vAdapter setup");
-
-        // callback - get video list
-        YoutubeClient.getList(new YoutubeClient.OnVideosReceived() {
-            @Override
-            public void videoListCreated(ArrayList<Video> videos) {
-                videoList.addAll(videos);
-                vAdapter.notifyDataSetChanged();
-                Log.d(TAG, "VideoAdapter notified on change to videoList");
-            }
-        });
-        Log.d(TAG, "YoutubeClient.getList called and video list set");
+        updateList();
 
         // RecyclerView OnItemClickListener callback
         recyclerViewVideos.addOnItemTouchListener(new RecyclerTouchListener(App.getContext(), recyclerViewVideos, new RecyclerTouchListener.ClickListener() {
@@ -85,5 +77,18 @@ public class VideoListFragment extends Fragment {
             }
         }));
         return root;
+    }
+
+    private void updateList() {
+        // callback - get video list
+        YoutubeClient.getList(new YoutubeClient.OnVideosReceived() {
+            @Override
+            public void videoListCreated(ArrayList<Video> videos) {
+                videoList.addAll(videos);
+                vAdapter.notifyDataSetChanged();
+                Log.d(TAG, "VideoAdapter notified on change to videoList");
+            }
+        });
+        Log.d(TAG, "YoutubeClient.getList called and video list set");
     }
 }
