@@ -8,11 +8,13 @@ import android.view.WindowManager;
 
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment;
+import com.mibrh.thoughtfulshow.Models.Video;
 import com.mibrh.thoughtfulshow.R;
 
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
+    public static Video videoSel;
 
 
     @Override

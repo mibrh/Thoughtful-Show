@@ -1,7 +1,6 @@
 package com.mibrh.thoughtfulshow.Controllers.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
-import com.mibrh.thoughtfulshow.Controllers.Activities.VideoActivity;
+import com.mibrh.thoughtfulshow.Controllers.Activities.MainActivity;
 import com.mibrh.thoughtfulshow.Controllers.Adapters.RecyclerTouchListener;
 import com.mibrh.thoughtfulshow.Controllers.Adapters.VideoAdapter;
 import com.mibrh.thoughtfulshow.Models.Video;
@@ -26,6 +25,8 @@ import java.util.ArrayList;
 
 
 public class VideoListFragment extends Fragment {
+    public VideoListFragment() {}
+
     public static final String EXTRA_MESSAGE = "VideoObject";
     private final String TAG = "VideoListFragment";
     RecyclerView recyclerViewVideos;
@@ -33,7 +34,6 @@ public class VideoListFragment extends Fragment {
     private ArrayList<Video> videoList = new ArrayList<>();
     private VideoAdapter vAdapter;
 
-    public VideoListFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,13 +62,11 @@ public class VideoListFragment extends Fragment {
         recyclerViewVideos.addOnItemTouchListener(new RecyclerTouchListener(App.getContext(), recyclerViewVideos, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Video video = videoList.get(position);
+                MainActivity.videoSel = videoList.get(position);
 //                Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onClick called for: " + video.getTitle() + ", id: " + video.getId() + ", starting intent");
-                // Intent to start VideoActivity
-                Intent intent = new Intent(App.getContext(), VideoActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, video);
-                startActivity(intent);
+                Log.d(TAG, "onClick called for: " + MainActivity.videoSel.getTitle() + ", id: " + MainActivity.videoSel.getId() + ", starting intent");
+                // Populate VideoPlayerFragment
+                getFragmentManager().beginTransaction().replace(R.id.container, new VideoPlayerFragment()).commit();
             }
 
             @Override
