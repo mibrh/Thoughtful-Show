@@ -3,6 +3,7 @@ package com.mibrh.thoughtfulshow.Controllers.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -66,7 +67,10 @@ public class VideoListFragment extends Fragment {
 //                Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick called for: " + MainActivity.videoSel.getTitle() + ", id: " + MainActivity.videoSel.getId() + ", starting intent");
                 // Populate VideoPlayerFragment
-                getFragmentManager().beginTransaction().replace(R.id.container, new VideoPlayerFragment()).commit();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, new VideoPlayerFragment());
+                ft.addToBackStack(null);
+                ft.commit();
             }
 
             @Override
