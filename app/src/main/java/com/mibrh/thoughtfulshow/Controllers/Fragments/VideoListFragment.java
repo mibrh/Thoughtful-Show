@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mibrh.thoughtfulshow.App;
@@ -28,7 +29,7 @@ public class VideoListFragment extends Fragment {
     public static final String EXTRA_MESSAGE = "VideoObject";
     private final String TAG = "VideoListFragment";
     RecyclerView recyclerViewVideos;
-//    ProgressBar progressBar;
+    ProgressBar progressBar;
     private ArrayList<Video> videoList = new ArrayList<>();
     private VideoAdapter vAdapter;
 
@@ -41,7 +42,7 @@ public class VideoListFragment extends Fragment {
         Context context = getContext();
 
         // Initialize Views
-//        progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
+        progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
         recyclerViewVideos = (RecyclerView) root.findViewById(R.id.recycler_view_messages_display);
 
         // Initialize adapter
@@ -85,6 +86,8 @@ public class VideoListFragment extends Fragment {
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
                 videoList.addAll(videos);
+                recyclerViewVideos.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
                 vAdapter.notifyDataSetChanged();
                 Log.d(TAG, "VideoAdapter notified on change to videoList");
             }
