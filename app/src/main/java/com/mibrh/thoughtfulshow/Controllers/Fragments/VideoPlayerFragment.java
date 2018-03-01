@@ -2,7 +2,6 @@ package com.mibrh.thoughtfulshow.Controllers.Fragments;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -33,13 +32,10 @@ public class VideoPlayerFragment extends Fragment{
     TextView videoTitle;
     TextView videoDescription;
 
-    private Context context;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_vid_player, container, false);
-        context = getContext();
 
         // Get the username from the intent that started this activity
         Video video = MainActivity.videoSel;
@@ -54,7 +50,7 @@ public class VideoPlayerFragment extends Fragment{
         videoDescription.setText(video.getDescription());
 
         // Progress Dialog
-        progressDialog = ProgressDialog.show(context, "", "Buffering video", true);
+        progressDialog = ProgressDialog.show(getContext(),"", "Buffering video", true);
         progressDialog.setCancelable(true);
 
         // Get videoURL
@@ -73,7 +69,7 @@ public class VideoPlayerFragment extends Fragment{
         Log.d(TAG, "PlayVideo called");
         try {
             getActivity().getWindow().setFormat(PixelFormat.TRANSLUCENT);
-            MediaController mediaController = new MediaController(context);
+            MediaController mediaController = new MediaController(getContext());
             mediaController.setAnchorView(videoView);
 
             Uri videoURI = Uri.parse(videoPath);
@@ -90,7 +86,7 @@ public class VideoPlayerFragment extends Fragment{
         } catch(Exception e) {
             progressDialog.dismiss();
             e.printStackTrace();
-            Toast.makeText(context, "Error trying to play video", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), "Error trying to play video", Toast.LENGTH_SHORT);
 //            finish();
         }
     }

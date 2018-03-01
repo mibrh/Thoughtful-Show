@@ -1,6 +1,5 @@
 package com.mibrh.thoughtfulshow.Controllers.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,18 +39,17 @@ public class VideoListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_vid_list, container, false);
-        Context context = getContext();
 
         // Initialize Views
         progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
         recyclerViewVideos = (RecyclerView) root.findViewById(R.id.recycler_view_messages_display);
 
         // Initialize adapter
-        vAdapter = new VideoAdapter(videoList, context);
+        vAdapter = new VideoAdapter(videoList, getContext());
         Log.d(TAG, "vAdapter setup");
 
         // Set up recycler view
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerViewVideos.setLayoutManager(mLayoutManager);
         recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
         recyclerViewVideos.setAdapter(vAdapter);
