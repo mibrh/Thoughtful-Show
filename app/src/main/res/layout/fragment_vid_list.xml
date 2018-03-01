@@ -12,6 +12,8 @@ tools:context="com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         tools:listitem="@layout/row_video_list_item"
+        android:layout_marginTop="@dimen/recycler_row_top"
+        android:layout_marginBottom="@dimen/recycler_row_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,6 +26,5 @@ tools:context="com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 
 </FrameLayout>
