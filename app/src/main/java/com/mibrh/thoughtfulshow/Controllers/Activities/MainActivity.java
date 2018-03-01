@@ -3,8 +3,6 @@ package com.mibrh.thoughtfulshow.Controllers.Activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment;
@@ -27,6 +25,4 @@ public class MainActivity extends AppCompatActivity {
         // Populate VideoListFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new VideoListFragment()).commit();
     }
-
-
 }
