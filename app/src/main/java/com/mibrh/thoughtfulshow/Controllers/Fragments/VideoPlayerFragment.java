@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
 import com.mibrh.thoughtfulshow.Controllers.Activities.MainActivity;
 import com.mibrh.thoughtfulshow.Models.Video;
@@ -57,16 +57,19 @@ public class VideoPlayerFragment extends Fragment{
         YoutubeClient.getVideoURL(video.getId(), new YoutubeClient.OnStreamURLReceived() {
             @Override
             public void videoStreamURLReceived(String videoStreamURL) {
+                Log.d(TAG, "videoStreamReceived");
                 videoPath = videoStreamURL;
-                PlayVideo();
+                Log.d(TAG, "videoPath set");
+                playVideo();
+                Log.d(TAG, "playVideo Called");
             }
         });
 
         return root;
     }
 
-    private void PlayVideo() {
-        Log.d(TAG, "PlayVideo called");
+    private void playVideo() {
+        Log.d(TAG, "playVideo called");
         try {
             getActivity().getWindow().setFormat(PixelFormat.TRANSLUCENT);
             MediaController mediaController = new MediaController(getContext());
@@ -86,8 +89,6 @@ public class VideoPlayerFragment extends Fragment{
         } catch(Exception e) {
             progressDialog.dismiss();
             e.printStackTrace();
-            Toast.makeText(getContext(), "Error trying to play video", Toast.LENGTH_SHORT);
-//            finish();
         }
     }
 }
