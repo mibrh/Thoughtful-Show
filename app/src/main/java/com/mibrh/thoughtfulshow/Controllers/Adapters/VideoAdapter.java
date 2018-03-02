@@ -23,13 +23,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
         // TODO:
         // Get duration value from JSON object
-        private TextView title, duration;
+        private TextView title;
         private ImageView thumbnail;
 
         private MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.row_video_title);
-            duration = (TextView) view.findViewById(R.id.row_video_duration);
             thumbnail = (ImageView) view.findViewById(R.id.row_video_thumbnail);
         }
     }

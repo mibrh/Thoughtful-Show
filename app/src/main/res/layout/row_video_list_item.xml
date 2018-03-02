@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-
     <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/recycler_row_top"
         android:layout_marginStart="@dimen/recycler_row_start"
@@ -24,11 +20,10 @@
 
         <TextView
             android:id="@+id/row_video_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="@dimen/text_padding_left"
-            android:layout_marginEnd="@dimen/text_padding_right"
 
             android:text="@string/default_title"
 
@@ -37,24 +32,7 @@
 
             style="@style/TextBold"
             android:textColor="@color/colorBlack"
-            />
+            android:layout_marginTop="0dp"
+            app:layout_constraintRight_toRightOf="parent" />
 
-        <TextView
-            android:id="@+id/row_video_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="@dimen/text_padding_left"
-            android:layout_marginEnd="@dimen/text_padding_right"
-
-            android:text="@string/default_duration"
-
-            app:layout_constraintLeft_toRightOf="@id/row_video_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/row_video_title"
-
-            style="@style/TextRegular"
-            android:textColor="@color/colorRed"
-            />
-
-    </android.support.constraint.ConstraintLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
