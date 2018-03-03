@@ -15,7 +15,7 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.mibrh.thoughtfulshow.App;
+import com.loopj.android.http.RequestHandle;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
 import com.mibrh.thoughtfulshow.Controllers.Activities.MainActivity;
 import com.mibrh.thoughtfulshow.Models.Video;
@@ -31,6 +31,8 @@ public class VideoPlayerFragment extends Fragment{
     VideoView videoView;
     TextView videoTitle;
     TextView videoDescription;
+
+    RequestHandle handle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,14 +56,13 @@ public class VideoPlayerFragment extends Fragment{
         progressDialog.setCancelable(true);
 
         // Get videoURL
-        YoutubeClient.getVideoURL(video.getId(), new YoutubeClient.OnStreamURLReceived() {
+        handle = YoutubeClient.getVideoURL(video.getId(), new YoutubeClient.OnStreamURLReceived() {
             @Override
             public void videoStreamURLReceived(String videoStreamURL) {
                 Log.d(TAG, "videoStreamReceived");
                 videoPath = videoStreamURL;
-                Log.d(TAG, "videoPath set");
+                Log.d(TAG, "videoPath set to: " + videoPath);
                 playVideo();
-                Log.d(TAG, "playVideo Called");
             }
         });
 
@@ -90,5 +91,11 @@ public class VideoPlayerFragment extends Fragment{
             progressDialog.dismiss();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDetach() {
+        handle.cancel(true);
+        super.onDetach();
     }
 }

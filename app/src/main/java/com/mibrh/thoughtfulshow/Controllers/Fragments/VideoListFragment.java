@@ -62,7 +62,6 @@ public class VideoListFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 MainActivity.videoSel = videoList.get(position);
-//                Toast.makeText(getApplicationContext(), video.getTitle() + " clicked", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick called for: " + MainActivity.videoSel.getTitle() + ", id: " + MainActivity.videoSel.getId() + ", starting intent");
                 // Populate VideoPlayerFragment
                 FragmentTransaction ft = getFragmentManager().beginTransaction();

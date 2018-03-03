@@ -3,6 +3,7 @@ package com.mibrh.thoughtfulshow.Clients;
 import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
 import com.mibrh.thoughtfulshow.App;
 import com.mibrh.thoughtfulshow.Models.Video;
 import com.mibrh.thoughtfulshow.R;
@@ -18,6 +19,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class YoutubeClient {
     private static final String TAG = "YoutubeClient";
+    private static final Integer STREAM_REQUEST_TAG = 12345;
 
     private static final String CHANNEL_ID = "UCQ97Z8xFj6BAUFcjP71zNNg";
     private static final String INFO_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet,id&order=date&maxResults=20&type=video";
@@ -50,9 +52,10 @@ public class YoutubeClient {
         });
     }
 
-    public static void getVideoURL(String videoID, final OnStreamURLReceived callback) {
+    public static RequestHandle getVideoURL(String videoID, final OnStreamURLReceived callback) {
         Log.d(TAG, "getVideoURL started");
-        RESTClient.get(streamURL(videoID), null, new JsonHttpResponseHandler() {
+
+        return RESTClient.get(streamURL(videoID), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 String videoStreamURL;
@@ -69,6 +72,10 @@ public class YoutubeClient {
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error) {
                 Log.d(TAG, "onFailure called in getVideoURL");
                 throwable.printStackTrace();
+            }
+
+            public void onCancel() {
+                Log.d(TAG, " getVideoURL onCancel");
             }
         });
     }
