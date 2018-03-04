@@ -7,11 +7,8 @@
 
 
     <!-- text padding -->
-    <dimen name="text_title_padding_top">16dp</dimen>
-    <dimen name="text_duration_padding_top">4dp</dimen>
-    <dimen name="text_padding_bottom">8dp</dimen>
-    <dimen name="text_padding_left">16dp</dimen>
-    <dimen name="text_padding_right">8dp</dimen>
+    <dimen name="video_row_title_margin">12dp</dimen>
+
 
     <!-- image padding -->
     <dimen name="image_padding_top">8dp</dimen>
@@ -26,8 +23,8 @@
     <dimen name="layout_padding_right">8dp</dimen>
 
     <!-- Recycler View -->
-    <dimen name="recycler_row_top">8dp</dimen>
-    <dimen name="recycler_row_bottom">8dp</dimen>
+    <dimen name="recycler_row_top">16dp</dimen>
+    <dimen name="recycler_row_bottom">16dp</dimen>
     <dimen name="recycler_row_start">8dp</dimen>
     <dimen name="recycler_row_end">8dp</dimen>
 
