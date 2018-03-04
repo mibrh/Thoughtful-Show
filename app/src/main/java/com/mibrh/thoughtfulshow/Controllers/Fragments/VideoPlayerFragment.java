@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -29,6 +30,7 @@ public class VideoPlayerFragment extends Fragment{
     VideoView videoView;
     TextView videoTitle;
     TextView videoDescription;
+    ProgressBar loader;
 
     RequestHandle handle;
 
@@ -44,6 +46,9 @@ public class VideoPlayerFragment extends Fragment{
         videoView = (VideoView) root.findViewById(R.id.video_view);
         videoTitle = (TextView) root.findViewById(R.id.video_stream_title);
         videoDescription = (TextView) root.findViewById(R.id.video_stream_description);
+        loader = (ProgressBar) root.findViewById(R.id.video_player_loader);
+
+        showLoader(true);
 
         // Set text in description block
         videoTitle.setText(video.getTitle());
@@ -77,6 +82,7 @@ public class VideoPlayerFragment extends Fragment{
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
+                    showLoader(false);
                     videoView.start();
                 }
             });
@@ -89,5 +95,13 @@ public class VideoPlayerFragment extends Fragment{
     public void onDetach() {
         handle.cancel(true);
         super.onDetach();
+    }
+
+    private void showLoader(boolean show){
+        if (show){
+            loader.setVisibility(View.VISIBLE);
+        } else {
+            loader.setVisibility(View.GONE);
+        }
     }
 }
