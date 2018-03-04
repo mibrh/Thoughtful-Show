@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/linear_layout_video"
         app:layout_constraintTop_toTopOf="parent"
@@ -15,12 +16,17 @@
 
         <VideoView
             android:id="@+id/video_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/linear_layout_video"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +42,6 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginStart="@dimen/text_padding_left"
-            android:layout_marginEnd="@dimen/text_padding_right"
             android:layout_marginTop="@dimen/text_title_padding_top"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,9 +54,8 @@
             android:text="@string/default_description"
             android:textSize="15sp"
             android:layout_marginStart="@dimen/text_padding_left"
-            android:layout_marginEnd="@dimen/text_padding_right"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/video_stream_title"
+            app:layout_constraintTop_toBottomOf="@+id/video_stream_title"
             />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
