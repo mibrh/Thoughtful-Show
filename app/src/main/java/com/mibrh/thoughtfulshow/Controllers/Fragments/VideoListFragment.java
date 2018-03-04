@@ -3,7 +3,6 @@ package com.mibrh.thoughtfulshow.Controllers.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 public class VideoListFragment extends Fragment {
     public VideoListFragment() {}
 
-    public static final String EXTRA_MESSAGE = "VideoObject";
     private final String TAG = "VideoListFragment";
     RecyclerView recyclerViewVideos;
     ProgressBar progressBar;
@@ -44,6 +42,9 @@ public class VideoListFragment extends Fragment {
         progressBar = (ProgressBar) root.findViewById(R.id.progress_bar_main);
         recyclerViewVideos = (RecyclerView) root.findViewById(R.id.recycler_view_messages_display);
 
+        // Initially show loader and hide recycler
+        showLoader(true);
+
         // Initialize adapter
         vAdapter = new VideoAdapter(videoList, getContext());
         Log.d(TAG, "vAdapter setup");
@@ -51,11 +52,14 @@ public class VideoListFragment extends Fragment {
         // Set up recycler view
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerViewVideos.setLayoutManager(mLayoutManager);
-        recyclerViewVideos.setItemAnimator(new DefaultItemAnimator());
         recyclerViewVideos.setAdapter(vAdapter);
         Log.d(TAG, "Adapter attached to recycler");
 
-        updateList();
+        if (videoList.isEmpty()) {
+            updateList();
+        } else {
+            showLoader(false);
+        }
 
         // RecyclerView OnItemClickListener callback
         recyclerViewVideos.addOnItemTouchListener(new RecyclerTouchListener(App.getContext(), recyclerViewVideos, new RecyclerTouchListener.ClickListener() {
@@ -85,12 +89,21 @@ public class VideoListFragment extends Fragment {
             @Override
             public void videoListCreated(ArrayList<Video> videos) {
                 videoList.addAll(videos);
-                recyclerViewVideos.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
                 vAdapter.notifyDataSetChanged();
+                showLoader(false);
                 Log.d(TAG, "VideoAdapter notified on change to videoList");
             }
         });
         Log.d(TAG, "YoutubeClient.getList called and video list set");
+    }
+
+    private void showLoader(boolean show) {
+        if (show) {
+            recyclerViewVideos.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            recyclerViewVideos.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }
