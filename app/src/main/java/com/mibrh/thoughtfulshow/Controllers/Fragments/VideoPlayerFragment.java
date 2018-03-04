@@ -1,7 +1,6 @@
 package com.mibrh.thoughtfulshow.Controllers.Fragments;
 
 
-import android.app.ProgressDialog;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -26,7 +25,6 @@ public class VideoPlayerFragment extends Fragment{
     private final String TAG = "VideoPlayerFragment";
 
     private String videoPath;
-    private static ProgressDialog progressDialog;
 
     VideoView videoView;
     TextView videoTitle;
@@ -50,10 +48,6 @@ public class VideoPlayerFragment extends Fragment{
         // Set text in description block
         videoTitle.setText(video.getTitle());
         videoDescription.setText(video.getDescription());
-
-        // Progress Dialog
-        progressDialog = ProgressDialog.show(getContext(),"", "Buffering video", true);
-        progressDialog.setCancelable(true);
 
         // Get videoURL
         handle = YoutubeClient.getVideoURL(video.getId(), new YoutubeClient.OnStreamURLReceived() {
@@ -83,12 +77,10 @@ public class VideoPlayerFragment extends Fragment{
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    progressDialog.dismiss();
                     videoView.start();
                 }
             });
         } catch(Exception e) {
-            progressDialog.dismiss();
             e.printStackTrace();
         }
     }
