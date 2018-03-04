@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/row_video_thumbnail"
-            android:layout_width="@dimen/recycler_image_width"
-            android:layout_height="@dimen/recycler_image_height"
+            android:layout_width="@dimen/video_row_thumbnail_width"
+            android:layout_height="@dimen/video_row_thumbnail_height"
             app:srcCompat="@mipmap/ic_launcher"
             android:scaleType="centerCrop"
             android:layout_gravity="center_vertical"
@@ -39,7 +39,7 @@
 
             android:includeFontPadding="false"
 
-            android:maxLines="2"
+            android:maxLines="3"
             android:ellipsize="end"
 
 

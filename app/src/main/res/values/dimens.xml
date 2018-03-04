@@ -6,9 +6,10 @@
     <dimen name="row_padding_vertical">10dp</dimen>
 
 
-    <!-- text padding -->
+    <!-- Video List Row Dimens -->
     <dimen name="video_row_title_margin">12dp</dimen>
-
+    <dimen name="video_row_thumbnail_height">100dp</dimen>
+    <dimen name="video_row_thumbnail_width">140dp</dimen>
 
     <!-- image padding -->
     <dimen name="image_padding_top">8dp</dimen>
@@ -28,8 +29,6 @@
     <dimen name="recycler_row_start">8dp</dimen>
     <dimen name="recycler_row_end">8dp</dimen>
 
-    <!-- Image View Dimens -->
-    <dimen name="recycler_image_height">80dp</dimen>
-    <dimen name="recycler_image_width">142dp</dimen>
+
 
 </resources>

@@ -28,6 +28,6 @@ public class Video implements Serializable {
     public String getDescription() { return description; }
 
     public String getThumbnailURL() {
-        return "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+        return "https://img.youtube.com/vi/" + id + "/mqdefault.jpg";
     }
 }
