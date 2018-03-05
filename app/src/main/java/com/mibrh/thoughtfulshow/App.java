@@ -3,11 +3,13 @@ package com.mibrh.thoughtfulshow;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class App {
+    private static String TAG = "App";
     private static Context context;
 
     public static void setContext(Context cntext) {
@@ -28,6 +30,7 @@ public class App {
     }
 
     public static void initFonts() {
+        Log.d(TAG, "initfonts run");
         String font = getResources().getString(R.string.font_main_regular);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

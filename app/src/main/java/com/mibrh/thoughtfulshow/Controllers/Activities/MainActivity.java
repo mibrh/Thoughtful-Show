@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
+        Log.d(TAG, "attachBaseContext called");
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

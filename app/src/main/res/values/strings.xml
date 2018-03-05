@@ -4,6 +4,8 @@
     <string name="default_title">Title</string>
     <string name="default_duration">Duration</string>
     <string name="default_description">Description</string>
+    <string name="default_user_name">Username</string>
+    <string name="default_comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deserunt iusto laboriosam, laborum minus modi nobis quasi quod saepe sed? Aliquid architecto atque aut corporis delectus dolores eius eos error excepturi illo, illum impedit ipsa labore laborum nam nobis nulla perferendis qui quibusdam repudiandae similique sunt tempora velit voluptas voluptates</string>
 
 
     <!-- Noto Fonts -->

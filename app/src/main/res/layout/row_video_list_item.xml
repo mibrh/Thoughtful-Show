@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
 
-            fontPath="@string/font_main_bold"
+            style="@style/video_list_row_title"
 
             android:layout_margin="@dimen/video_row_title_margin"
 

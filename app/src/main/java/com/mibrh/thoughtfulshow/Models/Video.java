@@ -3,9 +3,7 @@ package com.mibrh.thoughtfulshow.Models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-
-public class Video implements Serializable {
+public class Video {
     private final String TAG = "Video";
     private String id;
     private String title;

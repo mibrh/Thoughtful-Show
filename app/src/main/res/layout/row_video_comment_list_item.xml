@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/recycler_row_top"
+    android:layout_marginStart="@dimen/recycler_row_start"
+    android:layout_marginEnd="@dimen/recycler_row_end"
+    tools:ignore="MissingPrefix"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/comment_user_image_holder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="40dp"
+        android:layout_centerHorizontal="true"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9">
+        <ImageView
+            android:id="@+id/comment_user_image"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+        </ImageView>
+    </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/comment_user_name"
+
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+
+            style="@style/comment_list_username"
+
+            android:layout_margin="@dimen/video_row_title_margin"
+
+            app:layout_constraintLeft_toRightOf="@id/comment_user_image_holder"
+            app:layout_constraintTop_toTopOf="@id/comment_user_image_holder"
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:text="@string/default_user_name"
+            />
+
+        <TextView
+            android:id="@+id/comment_text"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/comment_list_text"
+
+            android:layout_margin="@dimen/video_row_title_margin"
+
+            app:layout_constraintLeft_toRightOf="@id/comment_user_image_holder"
+            app:layout_constraintTop_toBottomOf="@id/comment_user_name"
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:maxLines="3"
+            android:ellipsize="end"
+
+            android:text="@string/default_comment"/>
+
+</android.support.constraint.ConstraintLayout>

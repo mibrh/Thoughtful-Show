@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Thoughtful show theme -->
+    <style name="ThoughtfulTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/thoughtfulPrimary</item>
+        <item name="colorPrimaryDark">@color/thoughtfulPrimaryDark</item>
+        <item name="colorAccent">@color/thoughtfulAccent</item>
+    </style>
+
     <!-- Bold text -->
     <style name="TextBold" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
@@ -27,6 +35,38 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="fontPath">@string/font_main_bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <!-- Video Player -->
+    <style name="video_player_title" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">@string/font_main_medium</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="video_player_description" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">@string/font_main_light</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <!-- Comment List Row Title-->
+    <style name="comment_list_username" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">@string/font_main_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="comment_list_text" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">@string/font_main_light</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 

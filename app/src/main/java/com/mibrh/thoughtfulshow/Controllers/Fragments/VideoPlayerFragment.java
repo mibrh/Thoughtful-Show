@@ -6,6 +6,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +20,12 @@ import android.widget.VideoView;
 import com.loopj.android.http.RequestHandle;
 import com.mibrh.thoughtfulshow.Clients.YoutubeClient;
 import com.mibrh.thoughtfulshow.Controllers.Activities.MainActivity;
+import com.mibrh.thoughtfulshow.Controllers.Adapters.CommentAdapter;
+import com.mibrh.thoughtfulshow.Models.Comment;
 import com.mibrh.thoughtfulshow.Models.Video;
 import com.mibrh.thoughtfulshow.R;
+
+import java.util.ArrayList;
 
 public class VideoPlayerFragment extends Fragment{
     public VideoPlayerFragment() {}
@@ -32,6 +38,12 @@ public class VideoPlayerFragment extends Fragment{
     TextView videoDescription;
     ProgressBar loader;
 
+    RecyclerView recyclerViewComments;
+    ProgressBar commentLoader;
+
+    private ArrayList<Comment> commentList;
+    private CommentAdapter cAdapter;
+
     RequestHandle handle;
 
     @Override
@@ -42,13 +54,23 @@ public class VideoPlayerFragment extends Fragment{
         // Get the username from the intent that started this activity
         Video video = MainActivity.videoSel;
 
+        // Initialize Vars
+        commentList = new ArrayList<>();
+
         // Initialize views
         videoView = (VideoView) root.findViewById(R.id.video_view);
         videoTitle = (TextView) root.findViewById(R.id.video_stream_title);
         videoDescription = (TextView) root.findViewById(R.id.video_stream_description);
         loader = (ProgressBar) root.findViewById(R.id.video_player_loader);
+        commentLoader = (ProgressBar) root.findViewById(R.id.comment_list_loader);
+        recyclerViewComments = (RecyclerView) root.findViewById(R.id.recycler_view_comments_display);
 
-        showLoader(true);
+        showLoaderVid(true);
+        showLoaderComm(true);
+
+        // Initialize adapter
+        cAdapter = new CommentAdapter(commentList, getContext());
+        Log.d(TAG, "CommentAdapter setup");
 
         // Set text in description block
         videoTitle.setText(video.getTitle());
@@ -65,7 +87,30 @@ public class VideoPlayerFragment extends Fragment{
             }
         });
 
+        // Set up recycler view
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerViewComments.setLayoutManager(mLayoutManager);
+        recyclerViewComments.setAdapter(cAdapter);
+        Log.d(TAG, "Adapter attached to recycler for comments");
+
+        loadComments(video.getId());
+
+
         return root;
+    }
+
+    private void loadComments(String videoID) {
+        // callback - get comment list
+        YoutubeClient.getComments(videoID, new YoutubeClient.OnCommentsReceived() {
+            @Override
+            public void videoCommentsReceived(ArrayList<Comment> comments) {
+                commentList.addAll(comments);
+                cAdapter.notifyDataSetChanged();
+                showLoaderComm(false);
+                Log.d(TAG, "VideoAdapter notified on change to videoList");
+            }
+        });
+        Log.d(TAG, "YoutubeClient.getList called and video list set");
     }
 
     private void playVideo() {
@@ -82,7 +127,7 @@ public class VideoPlayerFragment extends Fragment{
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    showLoader(false);
+                    showLoaderVid(false);
                     videoView.start();
                 }
             });
@@ -97,11 +142,21 @@ public class VideoPlayerFragment extends Fragment{
         super.onDetach();
     }
 
-    private void showLoader(boolean show){
+    private void showLoaderVid(boolean show){
         if (show){
             loader.setVisibility(View.VISIBLE);
         } else {
             loader.setVisibility(View.GONE);
+        }
+    }
+
+    private void showLoaderComm(boolean show) {
+        if (show) {
+            recyclerViewComments.setVisibility(View.GONE);
+            commentLoader.setVisibility(View.VISIBLE);
+        } else {
+            recyclerViewComments.setVisibility(View.VISIBLE);
+            commentLoader.setVisibility(View.GONE);
         }
     }
 }
