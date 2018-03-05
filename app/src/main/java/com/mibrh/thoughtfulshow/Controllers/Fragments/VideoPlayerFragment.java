@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -90,11 +91,11 @@ public class VideoPlayerFragment extends Fragment{
         // Set up recycler view
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerViewComments.setLayoutManager(mLayoutManager);
+        recyclerViewComments.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         recyclerViewComments.setAdapter(cAdapter);
         Log.d(TAG, "Adapter attached to recycler for comments");
 
         loadComments(video.getId());
-
 
         return root;
     }
