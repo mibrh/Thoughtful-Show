@@ -4,4 +4,17 @@
     <string name="default_title">Title</string>
     <string name="default_duration">Duration</string>
     <string name="default_description">Description</string>
+
+
+    <!-- Noto Fonts -->
+    <string name="font_noto_light">fonts/notosans_light.ttf</string>
+    <string name="font_noto_regular">fonts/notosans_regular.ttf</string>
+    <string name="font_noto_medium">fonts/notosans_medium.ttf</string>
+    <string name="font_noto_bold">fonts/notosand_bold.ttf</string>
+
+    <!-- Main Fonts -->
+    <string name="font_main_light">@string/font_noto_light</string>
+    <string name="font_main_regular">@string/font_noto_regular</string>
+    <string name="font_main_medium">@string/font_noto_medium</string>
+    <string name="font_main_bold">@string/font_noto_bold</string>
 </resources>

@@ -22,4 +22,12 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <!-- Video List Row Title-->
+    <style name="video_list_row_title" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">@string/font_main_bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
 </resources>

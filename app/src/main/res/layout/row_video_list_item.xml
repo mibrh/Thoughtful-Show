@@ -7,6 +7,8 @@
         android:layout_marginTop="@dimen/recycler_row_top"
         android:layout_marginStart="@dimen/recycler_row_start"
         android:layout_marginEnd="@dimen/recycler_row_end"
+        tools:ignore="MissingPrefix"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <android.support.constraint.ConstraintLayout
@@ -26,10 +28,11 @@
 
         <TextView
             android:id="@+id/row_video_title"
-            style="@style/TextRegular"
-            android:layout_width="0dp"
 
             android:layout_height="wrap_content"
+            android:layout_width="0dp"
+
+            fontPath="@string/font_main_bold"
 
             android:layout_margin="@dimen/video_row_title_margin"
 
@@ -37,14 +40,10 @@
             app:layout_constraintTop_toTopOf="@id/row_video_thumbnail"
             app:layout_constraintRight_toRightOf="parent"
 
-            android:includeFontPadding="false"
-
             android:maxLines="3"
             android:ellipsize="end"
 
-
             android:text="@string/default_title"
-            android:textColor="@color/colorBlack"
             />
 
     </android.support.constraint.ConstraintLayout>
