@@ -33,37 +33,20 @@
 
         <TextView
             android:id="@+id/comment_user_name"
-
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-
             style="@style/comment_list_username"
-
             android:layout_margin="@dimen/video_row_title_margin"
-
             app:layout_constraintLeft_toRightOf="@id/comment_user_image_holder"
             app:layout_constraintTop_toTopOf="@id/comment_user_image_holder"
             app:layout_constraintRight_toRightOf="parent"
-
-            android:text="@string/default_user_name"
             />
 
         <TextView
             android:id="@+id/comment_text"
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             style="@style/comment_list_text"
-
             android:layout_margin="@dimen/video_row_title_margin"
-
             app:layout_constraintLeft_toRightOf="@id/comment_user_image_holder"
             app:layout_constraintTop_toBottomOf="@id/comment_user_name"
             app:layout_constraintRight_toRightOf="parent"
-
-            android:maxLines="3"
-            android:ellipsize="end"
-
-            android:text="@string/default_comment"/>
+            />
 
 </android.support.constraint.ConstraintLayout>

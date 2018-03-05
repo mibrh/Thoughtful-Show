@@ -42,6 +42,8 @@
     <style name="video_player_title" parent="@android:style/TextAppearance">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/default_title</item>
+        <item name="android:textSize">18sp</item>
         <item name="fontPath">@string/font_main_medium</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
@@ -49,15 +51,18 @@
     <style name="video_player_description" parent="@android:style/TextAppearance">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/default_description</item>
+        <item name="android:textSize">15sp</item>
         <item name="fontPath">@string/font_main_light</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
-    <!-- Comment List Row Title-->
+    <!-- Comment List Row Title extends Video Player -->
     <style name="comment_list_username" parent="@android:style/TextAppearance">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="fontPath">@string/font_main_medium</item>
+        <item name="android:text">@string/default_user_name</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
@@ -66,6 +71,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="fontPath">@string/font_main_light</item>
+        <item name="android:text">@string/default_comment</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
