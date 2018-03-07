@@ -35,8 +35,6 @@ public class VideoPlayerFragment extends Fragment{
     private String videoPath;
 
     VideoView videoView;
-    TextView videoTitle;
-    TextView videoDescription;
     ProgressBar loader;
 
     RecyclerView recyclerViewComments;
@@ -60,8 +58,6 @@ public class VideoPlayerFragment extends Fragment{
 
         // Initialize views
         videoView = (VideoView) root.findViewById(R.id.video_view);
-        videoTitle = (TextView) root.findViewById(R.id.video_stream_title);
-        videoDescription = (TextView) root.findViewById(R.id.video_stream_description);
         loader = (ProgressBar) root.findViewById(R.id.video_player_loader);
         commentLoader = (ProgressBar) root.findViewById(R.id.comment_list_loader);
         recyclerViewComments = (RecyclerView) root.findViewById(R.id.recycler_view_comments_display);
@@ -73,9 +69,6 @@ public class VideoPlayerFragment extends Fragment{
         cAdapter = new CommentAdapter(commentList, getContext());
         Log.d(TAG, "CommentAdapter setup");
 
-        // Set text in description block
-        videoTitle.setText(video.getTitle());
-        videoDescription.setText(video.getDescription());
 
         // Get videoURL
         handle = YoutubeClient.getVideoURL(video.getId(), new YoutubeClient.OnStreamURLReceived() {

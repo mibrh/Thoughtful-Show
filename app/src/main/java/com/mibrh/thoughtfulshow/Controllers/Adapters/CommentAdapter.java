@@ -8,28 +8,44 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mibrh.thoughtfulshow.Controllers.Activities.MainActivity;
 import com.mibrh.thoughtfulshow.Models.Comment;
 import com.mibrh.thoughtfulshow.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHolder> {
+public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int TYPE_VIDINFO = 0;
+    private static final int TYPE_VIDCOMMENT = 1;
 
     private List<Comment> commentList;
     private Context context;
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class VHComment extends RecyclerView.ViewHolder {
 
         private ImageView userimage;
         private TextView username;
         private TextView text;
 
-        public MyViewHolder(View view) {
+        public VHComment(View view) {
             super(view);
             userimage = (ImageView) view.findViewById(R.id.comment_user_image);
             username = (TextView) view.findViewById(R.id.comment_user_name);
             text = (TextView) view.findViewById(R.id.comment_text);
+        }
+    }
+
+    class VHInfo extends RecyclerView.ViewHolder {
+
+        private TextView title;
+        private TextView description;
+
+        public VHInfo(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.video_stream_title);
+            description = (TextView) view.findViewById(R.id.video_stream_description);
         }
     }
 
@@ -39,26 +55,53 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout;
+        if(viewType == TYPE_VIDINFO) {
+            layout = R.layout.video_details_video_player;
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+            return new VHInfo(itemView);
+        } else if(viewType == TYPE_VIDCOMMENT) {
+            layout = R.layout.row_video_comment_list_item;
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+            return new VHComment(itemView);
+        }
+        throw new RuntimeException("there is no viewtype matching the type " + viewType);
+    }
 
-        layout = R.layout.row_video_comment_list_item;
-
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-
-        return new MyViewHolder(itemView);
+    private Comment getComment(int position) {
+        return commentList.get(position);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Comment comment = commentList.get(position);
-        Picasso.with(context).load(comment.getAuthorProfileImageUrl()).into(holder.userimage);
-        holder.username.setText(comment.getAuthorDisplayName());
-        holder.text.setText(comment.getText());
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if(holder instanceof VHInfo) {
+            VHInfo VHinfo = (VHInfo)holder;
+            VHinfo.title.setText(MainActivity.videoSel.getTitle());
+            VHinfo.description.setText(MainActivity.videoSel.getDescription());
+        } else if(holder instanceof VHComment) {
+            Comment comment = commentList.get(position-1);
+            VHComment VHcomment = (VHComment)holder;
+            Picasso.with(context).load(comment.getAuthorProfileImageUrl()).into(VHcomment.userimage);
+            VHcomment.username.setText(comment.getAuthorDisplayName());
+            VHcomment.text.setText(comment.getText());
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(isPositionHeader(position))
+            return TYPE_VIDINFO;
+        return TYPE_VIDCOMMENT;
+    }
+
+    private boolean isPositionHeader(int position) {
+        return position == 0;
     }
 
     @Override
     public int getItemCount() {
-        return commentList.size();
+        return commentList.size() + 1;
     }
+
 }

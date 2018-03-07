@@ -44,7 +44,7 @@
             />
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/video_player_comments"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -54,39 +54,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_comments_display"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/row_video_comment_list_item"
+            app:layout_constraintLeft_toLeftOf="@id/video_player_comments"
+            app:layout_constraintRight_toRightOf="@id/video_player_comments"
+            app:layout_constraintTop_toTopOf="@id/video_player_comments"
+            app:layout_constraintBottom_toBottomOf="@id/video_player_comments"
+            android:paddingBottom="@dimen/recycler_row_bottom"
+            android:clipToPadding="false"
+            />
 
-            <include
-                layout="@layout/video_details_video_player"
-                />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_comments_display"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/row_video_comment_list_item"
-                android:paddingBottom="@dimen/recycler_row_bottom"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                >
-
-            </android.support.v7.widget.RecyclerView>
-
-            <ProgressBar
-                android:id="@+id/comment_list_loader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                />
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        <ProgressBar
+            android:id="@+id/comment_list_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/video_player_comments"
+            app:layout_constraintRight_toRightOf="@id/video_player_comments"
+            app:layout_constraintTop_toTopOf="@id/video_player_comments"
+            app:layout_constraintBottom_toBottomOf="@id/video_player_comments"
+            />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
