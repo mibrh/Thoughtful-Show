@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_VIDINFO = 0;
@@ -82,7 +84,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if(holder instanceof VHComment) {
             Comment comment = commentList.get(position-1);
             VHComment VHcomment = (VHComment)holder;
-            Picasso.with(context).load(comment.getAuthorProfileImageUrl()).into(VHcomment.userimage);
+            Picasso.with(context).load(comment.getAuthorProfileImageUrl())
+                    .transform(new CropCircleTransformation())
+                    .into(VHcomment.userimage);
             VHcomment.username.setText(comment.getAuthorDisplayName());
             VHcomment.text.setText(comment.getText());
         }

@@ -93,6 +93,10 @@ public class YoutubeClient {
                     JSONArray jsonArray = response.getJSONArray("items");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Comment comment = Comment.deserialize(jsonArray.getJSONObject(i));
+                        // To get higher def image
+                        String originalPhotoURL = comment.getAuthorProfileImageUrl();
+                        String regexReplace = "s28-c-k-no-mo-rj-c0xffffff";
+                        comment.setAuthorProfileImageUrl(originalPhotoURL.replaceAll(regexReplace, "s200-c-k-no-mo-rj-c0xffffff"));
                         comments.add(comment);
                     }
                     Log.d(TAG, "onSuccess getComments, Total count: " + jsonArray.length());

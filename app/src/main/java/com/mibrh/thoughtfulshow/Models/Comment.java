@@ -24,5 +24,7 @@ public class Comment {
 
         public String getAuthorProfileImageUrl() { return authorProfileImageUrl; }
 
+        public void setAuthorProfileImageUrl(String newURL) { this.authorProfileImageUrl = newURL; }
+
         public String getText() { return text; }
 }
