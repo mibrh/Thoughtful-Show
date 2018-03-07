@@ -19,4 +19,5 @@
     <string name="font_main_regular">@string/font_noto_regular</string>
     <string name="font_main_medium">@string/font_noto_medium</string>
     <string name="font_main_bold">@string/font_noto_bold</string>
+
 </resources>

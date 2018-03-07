@@ -4,11 +4,29 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!-- For thoughtful theme -->
-    <color name="thoughtfulPrimary">#FF2E00</color>
-    <color name="thoughtfulPrimaryDark">#E42800</color>
-    <color name="thoughtfulAccent">#FFC9BD</color>
+    <!-- Name placeholders -->
+    <color name="primary">@color/thoughtfulPrimary</color>
+    <color name="primaryDark">@color/thoughtfulPrimaryDark</color>
+    <color name="accent">@color/thoughtfulAccent</color>
+    <color name="secondary">@color/thoughtfulSecondary</color>
+    <color name="secondaryDark">@color/thoughtfulSecondaryDark</color>
+    <color name="secondaryAccent">@color/thoughtfulSecondaryAccent</color>
+    <color name="recyclerBackground">@color/thoughtfulRecyclerBackground</color>
+    <color name="recyclerDark">@color/thoughtfulRecyclerDark</color>
+    <color name="recyclerCard">@color/thoughtfulRecyclerCard</color>
+    <color name="recyclerText">@color/thoughtfulRecyclerText</color>
 
+    <!-- For thoughtful theme -->
+    <color name="thoughtfulPrimary">#d32f2f</color>
+    <color name="thoughtfulPrimaryDark">#9a0007</color>
+    <color name="thoughtfulAccent">#ff6659</color>
+    <color name="thoughtfulSecondary">#424242</color>
+    <color name="thoughtfulSecondaryDark">#1b1b1b</color>
+    <color name="thoughtfulSecondaryAccent">#6d6d6d</color>
+    <color name="thoughtfulRecyclerBackground">#424242</color>
+    <color name="thoughtfulRecyclerDark">#1b1b1b</color>
+    <color name="thoughtfulRecyclerCard">#6d6d6d</color>
+    <color name="thoughtfulRecyclerText">#e0e0e0</color>
 
 
     <!-- Text colors -->

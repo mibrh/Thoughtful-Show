@@ -8,6 +8,7 @@ tools:context="com.mibrh.thoughtfulshow.Controllers.Fragments.VideoListFragment"
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_messages_display"
+        style="@style/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
