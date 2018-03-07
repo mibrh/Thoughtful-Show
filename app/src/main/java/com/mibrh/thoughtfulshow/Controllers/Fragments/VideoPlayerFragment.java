@@ -108,10 +108,10 @@ public class VideoPlayerFragment extends Fragment{
                 commentList.addAll(comments);
                 cAdapter.notifyDataSetChanged();
                 showLoaderComm(false);
-                Log.d(TAG, "VideoAdapter notified on change to videoList");
+                Log.d(TAG, "CommentAdapter notified on change to commentList");
             }
         });
-        Log.d(TAG, "YoutubeClient.getList called and video list set");
+        Log.d(TAG, "YoutubeClient.getComments called and completed");
     }
 
     private void playVideo() {

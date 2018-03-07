@@ -57,7 +57,7 @@
         <item name="fontPath">@string/font_main_medium</item>
         <item name="android:text">@string/default_user_name</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColor">@color/recyclerText</item>
     </style>
 
     <style name="comment_list_text" parent="@android:style/TextAppearance">
@@ -66,7 +66,7 @@
         <item name="fontPath">@string/font_main_light</item>
         <item name="android:text">@string/default_comment</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColor">@color/recyclerText</item>
     </style>
 
     <!-- Video List Styles-->
